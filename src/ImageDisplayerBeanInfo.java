@@ -1,8 +1,8 @@
 import java.beans.*;
+import java.lang.reflect.Method;
 
 public class ImageDisplayerBeanInfo extends SimpleBeanInfo {
     public ImageDisplayerBeanInfo(){
-
     }
 
     @Override
@@ -13,19 +13,19 @@ public class ImageDisplayerBeanInfo extends SimpleBeanInfo {
 
     @Override
     public MethodDescriptor[] getMethodDescriptors() {
-        Class displayClass = ImageDisplayer.class;
-        String imageDisplayer = "imageDisplayer";
-        Class listenerClass = ImageAppearanceListener.class;
-        String[] var5 = new String[]{"imageAppearanceChanged"};
-        String addListener = "addImageAppearanceListener";
-        String removeListener = "removeImageAppearanceListener";
-        EventSetDescriptor var1 = null;
+        Class imageDisplacer = ImageDisplayer.class;
+        Class[] imageEvent = new Class[]{ImageAppearanceEvent.class};
+        String imageCanged = "imageAppearanceChanged";
+        Method method = null;
         try {
-            var1 = new EventSetDescriptor(displayClass, imageDisplayer, listenerClass, var5, addListener, removeListener);
-        } catch (IntrospectionException e) {
+            method = imageDisplacer.getMethod(imageCanged, imageEvent);
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-        return new EventSetDescriptor[]{var1};
+        ParameterDescriptor[] para1 = new ParameterDescriptor[]{new ParameterDescriptor()};
+        MethodDescriptor methodD1 = new MethodDescriptor(method, para1);
+        MethodDescriptor[] methodD2 = new MethodDescriptor[]{methodD1};
+        return methodD2;
     }
 
     @Override
