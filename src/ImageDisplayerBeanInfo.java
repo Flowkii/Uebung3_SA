@@ -1,12 +1,18 @@
-import java.beans.EventSetDescriptor;
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-import java.beans.SimpleBeanInfo;
+import java.beans.*;
 
 public class ImageDisplayerBeanInfo extends SimpleBeanInfo {
+    public ImageDisplayerBeanInfo(){
+
+    }
 
     @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
+        EventSetDescriptor[] eventSetDescriptors = new EventSetDescriptor[0];
+        return eventSetDescriptors;
+    }
+
+    @Override
+    public MethodDescriptor[] getMethodDescriptors() {
         Class displayClass = ImageDisplayer.class;
         String imageDisplayer = "imageDisplayer";
         Class listenerClass = ImageAppearanceListener.class;
