@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class LoadImage implements Serializable {
 
-    private String path;
+    private String path = "set Path";
     private Vector listeners = new Vector();
     private PlanarImage planarImage;
 

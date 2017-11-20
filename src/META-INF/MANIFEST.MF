@@ -3,3 +3,6 @@ Manifest-Version: 1.0
 Name: LoadImage.class
 Java-Bean: True
 
+Name: ImageDisplayer.class
+Java-Bean: True
+
