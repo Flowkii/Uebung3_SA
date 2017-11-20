@@ -5,7 +5,7 @@ public class ImageDisplayer extends Canvas implements ImageAppearanceListener {
     private PlanarImage image;
 
     public ImageDisplayer() {
-        setSize(400, 200);
+        setSize(200, 100);
     }
 
 
