@@ -13,4 +13,11 @@ public class ImageAppearanceEvent extends EventObject{
         super(source);
         this.image = image;
     }
+
+    public PlanarImage getImage() {
+        return image;
+    }
+    public void setImage(PlanarImage image) {
+        this.image = image;
+    }
 }
