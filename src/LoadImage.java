@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class LoadImage implements Serializable {
 
-    private String path = "set Path";
+    private String path;
     private Vector listeners = new Vector();
     private PlanarImage planarImage;
 
@@ -29,11 +29,10 @@ public class LoadImage implements Serializable {
     }
 
     public void run() {
-
-        planarImage = JAI.create("fileload", path);
-        fireImageAppearanceEvent();
-
-
+        if (path != null && !path.isEmpty()) {
+            planarImage = JAI.create("fileload", path);
+            fireImageAppearanceEvent();
+        }
     }
 
     protected synchronized void fireImageAppearanceEvent() {
