@@ -4,6 +4,10 @@ import java.awt.*;
 public class ImageDisplayer extends Canvas implements ImageAppearanceListener {
     private PlanarImage image;
 
+    public ImageDisplayer(){
+        setSize(400,200);
+    }
+
 
     @Override
     public void imageAppearanceChanged(ImageAppearanceEvent event) {
@@ -14,8 +18,9 @@ public class ImageDisplayer extends Canvas implements ImageAppearanceListener {
     @Override
     public void paint(Graphics graphics) {
         Dimension dimension = this.getSize();
-        int height = dimension.height;
-        int width = dimension.width;
+        int height = image.getHeight();
+        int width = image.getWidth();
+        setSize(width,height);
         graphics.drawImage(image.getAsBufferedImage(), 0, 0, null);
     }
 }
