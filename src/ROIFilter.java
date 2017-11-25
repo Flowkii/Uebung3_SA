@@ -3,13 +3,12 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class ROIFilter implements Serializable, ImageAppearanceListener{
-
+public class ROIFilter implements Serializable, ImageAppearanceListener {
     private PlanarImage image;
-    private int width =200;
-    private int height =100;
-    private int xOffset=0;
-    private int yOffset=10;
+    private int width = 200;
+    private int height = 100;
+    private int xOffset = 0;
+    private int yOffset = 10;
     private Rectangle rectangle;
     private Vector listeners = new Vector();
 
@@ -82,7 +81,7 @@ public class ROIFilter implements Serializable, ImageAppearanceListener{
             throw var6;
         }
 
-        ImageAppearanceEvent var2 = new ImageAppearanceEvent(this,image);
+        ImageAppearanceEvent var2 = new ImageAppearanceEvent(event.getSource(),image);
 
         for (int var3 = 0; var3 < var1.size(); ++var3) {
             ImageAppearanceListener var4 = (ImageAppearanceListener) var1.elementAt(var3);
