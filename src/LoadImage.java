@@ -35,16 +35,9 @@ public class LoadImage implements Serializable {
         }
     }
 
-    protected synchronized void fireImageAppearanceEvent() {
-        synchronized (this) {
-        }
-
+    protected void fireImageAppearanceEvent() {
         Vector vector;
-        try {
-            vector = (Vector) this.listeners.clone();
-        } catch (Throwable throwable) {
-            throw throwable;
-        }
+        vector = (Vector) this.listeners.clone();
 
         ImageAppearanceEvent event = new ImageAppearanceEvent(this, this.planarImage);
 
