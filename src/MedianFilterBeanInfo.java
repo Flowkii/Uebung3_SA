@@ -1,19 +1,17 @@
 import java.beans.*;
 import java.lang.reflect.Method;
 
-public class ROIFIlterBeanInfo extends SimpleBeanInfo {
-    public ROIFIlterBeanInfo() {
-    }
+public class MedianFilterBeanInfo extends SimpleBeanInfo {
 
     public EventSetDescriptor[] getEventSetDescriptors() {
         try {
-            Class roiFilterClass = ROIFilter.class;
-            String filter = "roiFilter";
+            Class medianFilterClass = MedianFilter.class;
+            String filter = "medianFilter";
             Class listenerClass = ImageAppearanceListener.class;
             String[] imageChanged = new String[]{"imageAppearanceChanged"};
             String addImageAppearanceListener = "addImageAppearanceListener";
             String removeImageAppearanceListener = "removeImageAppearanceListener";
-            EventSetDescriptor setDescriptor = new EventSetDescriptor(roiFilterClass, filter, listenerClass, imageChanged, addImageAppearanceListener, removeImageAppearanceListener);
+            EventSetDescriptor setDescriptor = new EventSetDescriptor(medianFilterClass, filter, listenerClass, imageChanged, addImageAppearanceListener, removeImageAppearanceListener);
             EventSetDescriptor[] setDescriptors = new EventSetDescriptor[]{setDescriptor};
             return setDescriptors;
         } catch (Exception var9) {
@@ -24,7 +22,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
 
     public MethodDescriptor[] getMethodDescriptors() {
         try {
-            Class var1 = ROIFilter.class;
+            Class var1 = MedianFilter.class;
             Class[] var2 = new Class[]{ImageAppearanceEvent.class};
             String var3 = "imageAppearanceChanged";
             Method var4 = var1.getMethod(var3, var2);
@@ -37,14 +35,10 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
             return null;
         }
     }
-
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
-            PropertyDescriptor width = new PropertyDescriptor("width", ROIFilter.class);
-            PropertyDescriptor height = new PropertyDescriptor("height", ROIFilter.class);
-            PropertyDescriptor xOffset = new PropertyDescriptor("xOffset", ROIFilter.class);
-            PropertyDescriptor yOffset = new PropertyDescriptor("yOffset", ROIFilter.class);
-            PropertyDescriptor[] var3 = new PropertyDescriptor[]{width, height, xOffset, yOffset};
+            PropertyDescriptor widmedianValueh = new PropertyDescriptor("medianValue", MedianFilter.class);
+            PropertyDescriptor[] var3 = new PropertyDescriptor[]{widmedianValueh};
             return var3;
         } catch (Exception var4) {
             var4.printStackTrace();

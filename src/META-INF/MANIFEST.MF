@@ -9,3 +9,6 @@ Java-Bean: True
 Name: ROIFilter.class
 Java-Bean: True
 
+Name: MedianFilter
+Java-Bean: True
+

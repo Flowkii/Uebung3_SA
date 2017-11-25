@@ -82,7 +82,7 @@ public class ROIFilter implements Serializable, ImageAppearanceListener{
             throw var6;
         }
 
-        ImageAppearanceEvent var2 = new ImageAppearanceEvent(event.getSource(),image);
+        ImageAppearanceEvent var2 = new ImageAppearanceEvent(this,image);
 
         for (int var3 = 0; var3 < var1.size(); ++var3) {
             ImageAppearanceListener var4 = (ImageAppearanceListener) var1.elementAt(var3);
