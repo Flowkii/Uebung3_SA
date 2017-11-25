@@ -6,3 +6,6 @@ Java-Bean: True
 Name: ImageDisplayer.class
 Java-Bean: True
 
+Name: ROIFilter.class
+Java-Bean: True
+
