@@ -8,19 +8,19 @@ public class LoadImageBeanInfo extends SimpleBeanInfo {
     @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
         Class imgClass = LoadImage.class;
-        String imageSource = "imageSource";
+        String eventSetName = "imageAppearance";
         Class listenerClass = ImageAppearanceListener.class;
         String[] names = new String[]{"imageAppearanceChanged"};
         String addListener = "addImageAppearanceListener";
         String removeListener = "removeImageAppearanceListener";
         EventSetDescriptor eventSetDescriptor = null;
         try {
-            eventSetDescriptor = new EventSetDescriptor(imgClass, imageSource, listenerClass, names, addListener, removeListener);
+            eventSetDescriptor = new EventSetDescriptor(imgClass, eventSetName, listenerClass, names, addListener, removeListener);
         } catch (IntrospectionException e) {
             e.printStackTrace();
         }
-        EventSetDescriptor[] result = new EventSetDescriptor[]{eventSetDescriptor};
-        return result;
+        EventSetDescriptor[] eventSetDescriptors = new EventSetDescriptor[]{eventSetDescriptor};
+        return eventSetDescriptors;
     }
 
     @Override
