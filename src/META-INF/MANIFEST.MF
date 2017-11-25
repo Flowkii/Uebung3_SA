@@ -9,3 +9,5 @@ Java-Bean: True
 Name: ROIFilter.class
 Java-Bean: True
 
+Name: ThresholdFilter.class
+Java-Bean: True

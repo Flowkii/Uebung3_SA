@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class LoadImage implements Serializable {
 
-    private String path="set Path";
+    private String path = "path";
     private Vector listeners = new Vector();
     private PlanarImage planarImage;
 
@@ -39,18 +39,18 @@ public class LoadImage implements Serializable {
         synchronized (this) {
         }
 
-        Vector var1;
+        Vector vector;
         try {
-            var1 = (Vector) this.listeners.clone();
-        } catch (Throwable var6) {
-            throw var6;
+            vector = (Vector) this.listeners.clone();
+        } catch (Throwable throwable) {
+            throw throwable;
         }
 
-        ImageAppearanceEvent var2 = new ImageAppearanceEvent(this, this.planarImage);
+        ImageAppearanceEvent event = new ImageAppearanceEvent(this, this.planarImage);
 
-        for (int var3 = 0; var3 < var1.size(); ++var3) {
-            ImageAppearanceListener var4 = (ImageAppearanceListener) var1.elementAt(var3);
-            var4.imageAppearanceChanged(var2);
+        for (int i = 0; i < vector.size(); ++i) {
+            ImageAppearanceListener var4 = (ImageAppearanceListener) vector.elementAt(i);
+            var4.imageAppearanceChanged(event);
         }
 
     }
