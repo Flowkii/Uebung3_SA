@@ -2,7 +2,7 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class ResultDisplayer extends List implements ResultListener {
+public class ResultDisplayer extends TextArea implements ResultListener {
     private Result result;
     private PrintWriter _pWriter;
 
@@ -36,18 +36,29 @@ public class ResultDisplayer extends List implements ResultListener {
 
     @Override
     public void paint(Graphics graphics) {
+        StringBuilder sb = new StringBuilder();
         if (result != null) {
-            this.add(result.get_amount() + "joints were found.");
+            sb.append(result.get_amount());
+            sb.append(" joints were found.");
+            sb.append("Erwartet X \t Gefunden X \t ABWEICHUNG \t Erwartet Y \t Gefunden Y \t ABWEICHUNG \t X und Y in Toleranzberich \t Durchmesser");
             for (int i = 0; i < result.get_amount(); i++) {
-                this.add(String.valueOf(result.getExpectedCoordinates().get(i)._x) + " " +
-                        String.valueOf(result.getCalculatedCoordinates().get(i)._x) + " " +
-                        result.getAberrationX().get(i).toString() + " " +
-                        String.valueOf(result.getExpectedCoordinates().get(i)._y) + " " +
-                        String.valueOf(result.getCalculatedCoordinates().get(i)._y) + " " +
-                        result.getAberrationY().toString() + " " +
-                        result.getIsInToleranceRange().get(i).toString() + " " +
-                        String.valueOf(result.getDiameters().get(i)));
+                sb.append(result.getExpectedCoordinates().get(i)._x);
+                sb.append("\t\t\t\t");
+                sb.append(result.getCalculatedCoordinates().get(i)._x);
+                sb.append("\t\t\t\t");
+                sb.append(result.getAberrationX().get(i));
+                sb.append("\t\t\t\t");
+                sb.append(result.getExpectedCoordinates().get(i)._y);
+                sb.append("\t\t\t\t");
+                sb.append(result.getCalculatedCoordinates().get(i)._y);
+                sb.append("\t\t\t\t");
+                sb.append(result.getAberrationY());
+                sb.append("\t\t\t\t");
+                sb.append(result.getIsInToleranceRange().get(i));
+                sb.append("\t\t\t\t\t\t");
+                sb.append(result.getDiameters().get(i));
             }
         }
+        this.setEditable(false);
     }
 }

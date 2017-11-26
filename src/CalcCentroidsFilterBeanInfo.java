@@ -29,23 +29,23 @@ public class CalcCentroidsFilterBeanInfo extends SimpleBeanInfo {
     public MethodDescriptor[] getMethodDescriptors() {
         try {
             Class clazz = CalcCentroidsFilter.class;
-            Class parameterTypes[] = new Class[1];
-            parameterTypes[0] = ResultEvent.class;
-            String name = "resultChanged";
-            Method method = clazz.getMethod(name, parameterTypes);
-            ParameterDescriptor parameterDescriptor[] = new ParameterDescriptor[1];
-            parameterDescriptor[0] = new ParameterDescriptor();
-            MethodDescriptor methodDescriptor = new MethodDescriptor(method, parameterDescriptor);
+//            Class parameterTypes[] = new Class[1];
+//            parameterTypes[0] = ResultEvent.class;
+//            String name = "resultChanged";
+//            Method method = clazz.getMethod(name, parameterTypes);
+//            ParameterDescriptor parameterDescriptor[] = new ParameterDescriptor[1];
+//            parameterDescriptor[0] = new ParameterDescriptor();
+//            MethodDescriptor methodDescriptor = new MethodDescriptor(method, parameterDescriptor);
 
             Class parameterTypes2[] = new Class[1];
             parameterTypes2[0] = ImageAppearanceEvent.class;
             String name2 = "imageAppearanceChanged";
             Method method2 = clazz.getMethod(name2, parameterTypes2);
             ParameterDescriptor parameterDescriptor2[] = new ParameterDescriptor[1];
-            parameterDescriptor[0] = new ParameterDescriptor();
+            parameterDescriptor2[0] = new ParameterDescriptor();
             MethodDescriptor methodDescriptor2 = new MethodDescriptor(method2, parameterDescriptor2);
 
-            return new MethodDescriptor[]{methodDescriptor, methodDescriptor2};
+            return new MethodDescriptor[]{methodDescriptor2};
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

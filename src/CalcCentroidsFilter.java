@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.*;
 
-public class CalcCentroidsFilter implements ResultListener, ImageAppearanceListener, Serializable {
+public class CalcCentroidsFilter implements ImageAppearanceListener, Serializable {
     private Vector listeners;
     private PlanarImage image;
     private HashMap<Coordinate, Boolean> general;
@@ -16,13 +16,9 @@ public class CalcCentroidsFilter implements ResultListener, ImageAppearanceListe
     }
 
     @Override
-    public void resultChanged(ResultEvent event) {
-        process();
-    }
-
-    @Override
     public void imageAppearanceChanged(ImageAppearanceEvent event) {
         this.image = event.getImage();
+        process();
     }
 
     private void fireResultEvent(Result result) {
