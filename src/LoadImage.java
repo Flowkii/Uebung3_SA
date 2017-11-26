@@ -5,9 +5,14 @@ import java.util.Vector;
 
 public class LoadImage implements Serializable {
 
-    private String path = "D:\\Downloads\\loetstellen.jpg";
-    private Vector listeners = new Vector();
+    private String path;
+    private Vector listeners;
     private PlanarImage planarImage;
+
+    public LoadImage() {
+        path = "path to image";
+        Vector listeners = new Vector();
+    }
 
     public String getPath() {
         return path;

@@ -8,10 +8,15 @@ import java.util.Vector;
 
 public class MedianFilter implements Serializable, ImageAppearanceListener {
 
-    private Vector listeners = new Vector();
-    private int medianValue = 4;
+    private Vector listeners;
+    private int medianValue;
     private PlanarImage inputImage;
     private PlanarImage outputImage;
+
+    public MedianFilter() {
+        listeners = new Vector();
+        medianValue = 4;
+    }
 
     public int getMedianValue() {
         return medianValue;

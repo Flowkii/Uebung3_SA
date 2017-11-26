@@ -15,12 +15,18 @@ public class OpeningFilter implements Serializable, ImageAppearanceListener {
     private Vector listeners = new Vector();
     private PlanarImage inputImage;
     private PlanarImage outputImage;
-    private int kernelX = 3;
-    private int kernelY = 3;
+    private int kernelX;
+    private int kernelY;
     private float[] kernelMatrix = {0, 1, 0,
             1, 1, 1,
             0, 1, 0};
-    private int cycles = 5;
+    private int cycles;
+
+    public OpeningFilter() {
+        kernelX = 3;
+        kernelY = 3;
+        cycles = 5;
+    }
 
 
     public int getCycles() {

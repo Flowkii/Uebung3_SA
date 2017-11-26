@@ -14,7 +14,7 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
     private Vector listeners;
 
     public EvaluateResultFilter() {
-        path = "D:\\Downloads\\expectedCentroids.txt";
+        path = "path to expected coordinates file";
         tolerance = 3;
         listeners = new Vector();
     }
@@ -22,12 +22,12 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
     @Override
     public void resultChanged(ResultEvent event) {
         result = event.getResult();
-            try {
-                readExpectedCoordinates(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            process();
+        try {
+            readExpectedCoordinates(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        process();
 
     }
 
@@ -60,7 +60,7 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
 
     private void readExpectedCoordinates(String expectedResultPath) throws IOException {
         FileReader fileReader = new FileReader(expectedResultPath);
-        if(fileReader!=null) {
+        if (fileReader != null) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             _expectedCoordinates = new ArrayList<>();
