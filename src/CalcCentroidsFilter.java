@@ -68,6 +68,7 @@ public class CalcCentroidsFilter implements ImageAppearanceListener, Serializabl
         figures.add(figure);
     }
 
+
     private void addConnectedComponents(BufferedImage img, ArrayList<Coordinate> figure, int x, int y) {
         if (x - 1 >= 0 && general.containsKey((new Coordinate(x - 1, y))) == false && img.getRaster().getSample(x - 1, y, 0) == 255) {
             general.put(new Coordinate(x - 1, y), true);
