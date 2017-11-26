@@ -1,33 +1,23 @@
 import java.beans.*;
 import java.lang.reflect.Method;
 
-public class ThresholdFilterBeanInfo extends SimpleBeanInfo {
+public class CalcDiametersFilterBeanInfo extends SimpleBeanInfo{
+
     @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
-        try {
-            PropertyDescriptor high, low, constant, band;
-            Class clazz = ThresholdFilter.class;
-            high = new PropertyDescriptor("thresholdHigh", clazz);
-            low = new PropertyDescriptor("thresholdLow", clazz);
-            constant = new PropertyDescriptor("thresholdConst", clazz);
-            band = new PropertyDescriptor("band", clazz);
-            return new PropertyDescriptor[]{high, low, constant, band};
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new PropertyDescriptor[]{ };
     }
 
     @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
         try {
             EventSetDescriptor eventSetDescriptor;
-            Class clazz = ThresholdFilter.class;
-            String event = "imageAppearance";
-            Class listener = ImageAppearanceListener.class;
-            String names[] = {"imageAppearanceChanged"};
-            String add = "addImageAppearanceListener";
-            String remove = "removeImageAppearanceListener";
+            Class clazz = CalcDiametersFilter.class;
+            String event = "result";
+            Class listener = ResultListener.class;
+            String names[] = {"resultChanged"};
+            String add = "addResultListener";
+            String remove = "removeResultListener";
             eventSetDescriptor = new EventSetDescriptor(clazz, event, listener, names, add, remove);
             return new EventSetDescriptor[]{eventSetDescriptor};
         } catch (IntrospectionException e) {
@@ -39,10 +29,10 @@ public class ThresholdFilterBeanInfo extends SimpleBeanInfo {
     @Override
     public MethodDescriptor[] getMethodDescriptors() {
         try {
-            Class clazz = ThresholdFilter.class;
+            Class clazz = CalcDiametersFilter.class;
             Class parameterTypes[] = new Class[1];
-            parameterTypes[0] = ImageAppearanceEvent.class;
-            String name = "imageAppearanceChanged";
+            parameterTypes[0] = ResultEvent.class;
+            String name = "resultChanged";
             Method method = clazz.getMethod(name, parameterTypes);
             ParameterDescriptor parameterDescriptor[] = new ParameterDescriptor[1];
             parameterDescriptor[0] = new ParameterDescriptor();

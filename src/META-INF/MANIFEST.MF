@@ -21,3 +21,9 @@ Java-Bean: True
 Name: CalcCentroidsFilter.class
 Java-Bean: True
 
+Name: CalcDiametersFilter.class
+Java-Bean: True
+
+Name: EvaluateResultFilter.class
+Java-Bean: True
+
