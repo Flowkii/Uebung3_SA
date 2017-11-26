@@ -10,6 +10,8 @@ public class ResultDisplayer extends TextArea implements ResultListener {
     public void resultChanged(ResultEvent event) {
         result = event.getResult();
         if (result != null) {
+
+            //write result to file
             printWriter.println("Ergebnisse: ");
             printWriter.println("Es wurden " + result.get_amount() + " Loetstellen gefunden.");
             printWriter.println("Erwartet X \t Gefunden X \t ABWEICHUNG \t Erwartet Y \t Gefunden Y \t ABWEICHUNG \t X und Y in Toleranzberich \t Durchmesser");
@@ -25,19 +27,9 @@ public class ResultDisplayer extends TextArea implements ResultListener {
             }
             printWriter.flush();
             printWriter.close();
-        }
-        this.repaint();
-    }
 
-    public ResultDisplayer() throws FileNotFoundException {
-        setSize(800, 300);
-        printWriter = new PrintWriter("result.txt");
-    }
-
-    @Override
-    public void paint(Graphics graphics) {
-        StringBuilder sb = new StringBuilder();
-        if (result != null) {
+            //write result to text area
+            StringBuilder sb = new StringBuilder();
             sb.append(result.get_amount());
             sb.append(" joints were found.");
             sb.append("\n");
@@ -61,8 +53,14 @@ public class ResultDisplayer extends TextArea implements ResultListener {
                 sb.append(result.getDiameters().get(i));
                 sb.append("\n");
             }
+            this.setText(sb.toString());
+            this.setEditable(false);
         }
-        this.setText(sb.toString());
-        this.setEditable(false);
+        this.repaint();
+    }
+
+    public ResultDisplayer() throws FileNotFoundException {
+        setSize(800, 300);
+        printWriter = new PrintWriter("result.txt");
     }
 }
