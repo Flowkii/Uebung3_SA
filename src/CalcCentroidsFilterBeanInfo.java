@@ -29,14 +29,6 @@ public class CalcCentroidsFilterBeanInfo extends SimpleBeanInfo {
     public MethodDescriptor[] getMethodDescriptors() {
         try {
             Class clazz = CalcCentroidsFilter.class;
-//            Class parameterTypes[] = new Class[1];
-//            parameterTypes[0] = ResultEvent.class;
-//            String name = "resultChanged";
-//            Method method = clazz.getMethod(name, parameterTypes);
-//            ParameterDescriptor parameterDescriptor[] = new ParameterDescriptor[1];
-//            parameterDescriptor[0] = new ParameterDescriptor();
-//            MethodDescriptor methodDescriptor = new MethodDescriptor(method, parameterDescriptor);
-
             Class parameterTypes2[] = new Class[1];
             parameterTypes2[0] = ImageAppearanceEvent.class;
             String name2 = "imageAppearanceChanged";
