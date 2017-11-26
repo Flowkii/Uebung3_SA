@@ -8,16 +8,15 @@ import java.util.Vector;
 public class EvaluateResultFilter implements ResultListener{
     private Result result;
     private List<Coordinate> _expectedCoordinates;
-    private int _tolerance;
+    private int tolerance;
     private String path;
     private Vector listeners;
 
     public EvaluateResultFilter() {
         path = "path";
-        _tolerance = 3;
+        tolerance = 3;
         listeners = new Vector();
     }
-
     @Override
     public void resultChanged(ResultEvent event) {
         result = event.getResult();
@@ -37,7 +36,7 @@ public class EvaluateResultFilter implements ResultListener{
             Coordinate expectedCoordinate = _expectedCoordinates.get(i);
             int aberrationX = Math.abs(resultCoordinate._x - expectedCoordinate._x);
             int aberrationY = Math.abs(resultCoordinate._y - expectedCoordinate._y);
-            if (aberrationX <= _tolerance && aberrationY <= _tolerance) {  // liegt im Toleranzbereich
+            if (aberrationX <= tolerance && aberrationY <= tolerance) {  // liegt im Toleranzbereich
                 result.addResultInfo(expectedCoordinate, aberrationX, aberrationY, true);
             } else {
                 result.addResultInfo(expectedCoordinate, aberrationX, aberrationY, false);
@@ -72,5 +71,29 @@ public class EvaluateResultFilter implements ResultListener{
             _expectedCoordinates.add(coordinate);
         }
 
+    }
+
+    public void addResultListener(ResultListener listener) {
+        listeners.addElement(listener);
+    }
+
+    public void removeResultListener(ResultListener listener) {
+        listeners.removeElement(listener);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getTolerance() {
+        return tolerance;
+    }
+
+    public void setTolerance(int tolerance) {
+        this.tolerance = tolerance;
     }
 }

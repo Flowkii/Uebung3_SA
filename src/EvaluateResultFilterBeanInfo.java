@@ -7,9 +7,9 @@ public class EvaluateResultFilterBeanInfo extends SimpleBeanInfo{
             Class clazz = EvaluateResultFilter.class;
             String eventSetName = "result";
             Class listenerClass = ResultListener.class;
-            String[] names = new String[]{"imageAppearanceChanged"};
-            String add = "addImageAppearanceListener";
-            String remove = "removeImageAppearanceListener";
+            String[] names = new String[]{"resultChanged"};
+            String add = "addResultListener";
+            String remove = "removeResultListener";
             EventSetDescriptor setDescriptor = new EventSetDescriptor(clazz, eventSetName, listenerClass, names, add, remove);
             return new EventSetDescriptor[]{setDescriptor};
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class EvaluateResultFilterBeanInfo extends SimpleBeanInfo{
             PropertyDescriptor path, tolerance;
             Class clazz = EvaluateResultFilter.class;
             path = new PropertyDescriptor("path", clazz);
-            tolerance = new PropertyDescriptor("_tolerance", clazz);
+            tolerance = new PropertyDescriptor("tolerance", clazz);
             return new PropertyDescriptor[]{path, tolerance};
         } catch (Exception var4) {
             var4.printStackTrace();
