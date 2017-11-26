@@ -7,9 +7,9 @@ import java.awt.image.renderable.ParameterBlock;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class OpeningFilter  implements Serializable,ImageAppearanceListener{
+public class OpeningFilter implements Serializable, ImageAppearanceListener {
 
-    private Vector listeners=new Vector();
+    private Vector listeners = new Vector();
 
 
     public void addImageAppearanceListener(ImageAppearanceListener listener) {
@@ -52,18 +52,13 @@ public class OpeningFilter  implements Serializable,ImageAppearanceListener{
         p.addSource(output);
         p.add(kernel);
         output = JAI.create("dilate", p);
-        Vector var1;
-        try {
-            var1 = (Vector) this.listeners.clone();
-        } catch (Throwable var6) {
-            throw var6;
-        }
+        Vector vector = (Vector) this.listeners.clone();
 
-        ImageAppearanceEvent var2 = new ImageAppearanceEvent(event.getSource(),output);
+        ImageAppearanceEvent imageAppearanceEvent = new ImageAppearanceEvent(event.getSource(), output);
 
-        for (int var3 = 0; var3 < var1.size(); ++var3) {
-            ImageAppearanceListener var4 = (ImageAppearanceListener) var1.elementAt(var3);
-            var4.imageAppearanceChanged(var2);
+        for (int i = 0; i < vector.size(); ++i) {
+            ImageAppearanceListener listener = (ImageAppearanceListener) vector.elementAt(i);
+            listener.imageAppearanceChanged(imageAppearanceEvent);
         }
     }
 }
