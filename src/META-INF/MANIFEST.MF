@@ -12,9 +12,12 @@ Java-Bean: True
 Name: ThresholdFilter.class
 Java-Bean: True
 
-Name: MedianFilter
+Name: MedianFilter.class
 Java-Bean: True
 
-Name: OpeningFilter
+Name: OpeningFilter.class
+Java-Bean: True
+
+Name: CalcCentroidsFilter.class
 Java-Bean: True
 

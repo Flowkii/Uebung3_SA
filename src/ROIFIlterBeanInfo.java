@@ -14,8 +14,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
             String addImageAppearanceListener = "addImageAppearanceListener";
             String removeImageAppearanceListener = "removeImageAppearanceListener";
             EventSetDescriptor setDescriptor = new EventSetDescriptor(roiFilterClass, eventSetName, listenerClass, imageChanged, addImageAppearanceListener, removeImageAppearanceListener);
-            EventSetDescriptor[] setDescriptors = new EventSetDescriptor[]{setDescriptor};
-            return setDescriptors;
+            return new EventSetDescriptor[]{setDescriptor};
         } catch (Exception var9) {
             var9.printStackTrace();
             return null;
@@ -30,8 +29,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
             Method method = clazz.getMethod(methodName, parameterTypes);
             ParameterDescriptor[] parameterDescriptors = new ParameterDescriptor[]{new ParameterDescriptor()};
             MethodDescriptor methodDescriptor = new MethodDescriptor(method, parameterDescriptors);
-            MethodDescriptor[] methodDescriptors = new MethodDescriptor[]{methodDescriptor};
-            return methodDescriptors;
+            return new MethodDescriptor[]{methodDescriptor};
         } catch (Exception var8) {
             var8.printStackTrace();
             return null;
@@ -44,8 +42,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
             PropertyDescriptor height = new PropertyDescriptor("height", ROIFilter.class);
             PropertyDescriptor xOffset = new PropertyDescriptor("xOffset", ROIFilter.class);
             PropertyDescriptor yOffset = new PropertyDescriptor("yOffset", ROIFilter.class);
-            PropertyDescriptor[] propertyDescriptors = new PropertyDescriptor[]{width, height, xOffset, yOffset};
-            return propertyDescriptors;
+            return new PropertyDescriptor[]{width, height, xOffset, yOffset};
         } catch (Exception var4) {
             var4.printStackTrace();
             return null;
