@@ -27,7 +27,7 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
         run();
     }
 
-    protected void fireImageAppearanceEvent() {
+    private void fireImageAppearanceEvent() {
         Vector vector;
         vector = (Vector) listeners.clone();
         ImageAppearanceEvent event = new ImageAppearanceEvent(this, image);

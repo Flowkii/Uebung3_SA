@@ -71,15 +71,8 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
         image.setProperty("offsetX", x);
         image.setProperty("offsetY", y);
 
-        synchronized (this) {
-        }
-
         Vector var1;
-        try {
-            var1 = (Vector) this.listeners.clone();
-        } catch (Throwable var6) {
-            throw var6;
-        }
+        var1 = (Vector) this.listeners.clone();
 
         ImageAppearanceEvent var2 = new ImageAppearanceEvent(event.getSource(),image);
 
