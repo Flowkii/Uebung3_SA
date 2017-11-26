@@ -1,11 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class EvaluateResultFilter implements ResultListener {
+public class EvaluateResultFilter implements ResultListener, Serializable {
     private Result result;
     private List<Coordinate> _expectedCoordinates;
     private int tolerance;
@@ -13,7 +14,7 @@ public class EvaluateResultFilter implements ResultListener {
     private Vector listeners;
 
     public EvaluateResultFilter() {
-        path = "path";
+        path = "D:\\Downloads\\expectedCentroids.txt";
         tolerance = 3;
         listeners = new Vector();
     }

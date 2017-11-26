@@ -1,8 +1,9 @@
 import javax.media.jai.PlanarImage;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.*;
 
-public class CalcCentroidsFilter implements ResultListener, ImageAppearanceListener {
+public class CalcCentroidsFilter implements ResultListener, ImageAppearanceListener, Serializable {
     private Vector listeners;
     private PlanarImage image;
     private HashMap<Coordinate, Boolean> general;

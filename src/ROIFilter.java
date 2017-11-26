@@ -6,8 +6,8 @@ import java.util.Vector;
 public class ROIFilter implements Serializable, ImageAppearanceListener {
     private PlanarImage inputImage;
     private PlanarImage outputImage;
-    private int width = 100;
-    private int height = 500;
+    private int width = 500;
+    private int height = 100;
     private int xOffset = 30;
     private int yOffset = 40;
     private Rectangle rectangle;

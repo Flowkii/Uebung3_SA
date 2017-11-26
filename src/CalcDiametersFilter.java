@@ -1,9 +1,10 @@
 import javax.media.jai.PlanarImage;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class CalcDiametersFilter implements ResultListener {
+public class CalcDiametersFilter implements ResultListener, Serializable {
     private Result result;
     private Vector listeners;
 
