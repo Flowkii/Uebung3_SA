@@ -15,3 +15,6 @@ Java-Bean: True
 Name: MedianFilter
 Java-Bean: True
 
+Name: OpeningFilter
+Java-Bean: True
+
