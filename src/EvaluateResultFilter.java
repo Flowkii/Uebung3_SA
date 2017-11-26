@@ -89,6 +89,7 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
 
     public void setPath(String path) {
         this.path = path;
+        process();
     }
 
     public int getTolerance() {
@@ -97,5 +98,6 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
 
     public void setTolerance(int tolerance) {
         this.tolerance = tolerance;
+        process();
     }
 }

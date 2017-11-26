@@ -88,7 +88,7 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
             getRectangle();
             Double xDouble = rectangle.getX();
             Integer x = xDouble.intValue();
-            Double yDouble = rectangle.getX();
+            Double yDouble = rectangle.getY();
             Integer y = yDouble.intValue();
             outputImage.setProperty("offsetX", x);
             outputImage.setProperty("offsetY", y);
