@@ -1,7 +1,8 @@
 import java.util.EventObject;
 
-public class ResultEvent extends EventObject{
+public class ResultEvent extends EventObject {
     private Result result;
+
     /**
      * Constructs a prototypical Event.
      *

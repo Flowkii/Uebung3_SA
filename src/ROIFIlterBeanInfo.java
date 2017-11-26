@@ -5,6 +5,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
     public ROIFIlterBeanInfo() {
     }
 
+    @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
         try {
             Class roiFilterClass = ROIFilter.class;
@@ -21,6 +22,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
         }
     }
 
+    @Override
     public MethodDescriptor[] getMethodDescriptors() {
         try {
             Class clazz = ROIFilter.class;
@@ -36,6 +38,7 @@ public class ROIFIlterBeanInfo extends SimpleBeanInfo {
         }
     }
 
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor width = new PropertyDescriptor("width", ROIFilter.class);

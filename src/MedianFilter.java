@@ -10,6 +10,8 @@ public class MedianFilter implements Serializable, ImageAppearanceListener {
 
     private Vector listeners = new Vector();
     private int medianValue = 4;
+    private PlanarImage inputImage;
+    private PlanarImage outputImage;
 
     public int getMedianValue() {
         return medianValue;
@@ -17,6 +19,8 @@ public class MedianFilter implements Serializable, ImageAppearanceListener {
 
     public void setMedianValue(int medianValue) {
         this.medianValue = medianValue;
+        process();
+
     }
 
     public void addImageAppearanceListener(ImageAppearanceListener listener) {
@@ -31,20 +35,29 @@ public class MedianFilter implements Serializable, ImageAppearanceListener {
 
     @Override
     public void imageAppearanceChanged(ImageAppearanceEvent event) {
+        this.inputImage = event.getImage();
+        process();
+    }
 
-        ParameterBlock parameterBlock = new ParameterBlock();
-        parameterBlock.addSource(event.getImage());
-        parameterBlock.add(MedianFilterDescriptor.MEDIAN_MASK_SQUARE);
-        parameterBlock.add(medianValue);
-        RenderedImage renderedImage = JAI.create("MedianFilter", parameterBlock);
-        PlanarImage image = PlanarImage.wrapRenderedImage(renderedImage);
+    public void process() {
+        if (inputImage != null) {
+            ParameterBlock parameterBlock = new ParameterBlock();
+            parameterBlock.addSource(inputImage);
+            parameterBlock.add(MedianFilterDescriptor.MEDIAN_MASK_SQUARE);
+            parameterBlock.add(medianValue);
+            RenderedImage renderedImage = JAI.create("MedianFilter", parameterBlock);
+            outputImage = PlanarImage.wrapRenderedImage(renderedImage);
+            fireImageAppearanceEvent();
+        }
+    }
 
-        Vector vector = (Vector) this.listeners.clone();
-        ImageAppearanceEvent imageAppearanceEvent = new ImageAppearanceEvent(this, image);
-
-        for (int i = 0; i < vector.size(); ++i) {
+    private void fireImageAppearanceEvent() {
+        Vector vector;
+        vector = (Vector) listeners.clone();
+        ImageAppearanceEvent event = new ImageAppearanceEvent(this, outputImage);
+        for (int i = 0; i < vector.size(); i++) {
             ImageAppearanceListener listener = (ImageAppearanceListener) vector.elementAt(i);
-            listener.imageAppearanceChanged(imageAppearanceEvent);
+            listener.imageAppearanceChanged(event);
         }
     }
 }

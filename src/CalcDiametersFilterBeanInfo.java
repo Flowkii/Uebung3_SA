@@ -1,11 +1,11 @@
 import java.beans.*;
 import java.lang.reflect.Method;
 
-public class CalcDiametersFilterBeanInfo extends SimpleBeanInfo{
+public class CalcDiametersFilterBeanInfo extends SimpleBeanInfo {
 
     @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
-        return new PropertyDescriptor[]{ };
+        return new PropertyDescriptor[]{};
     }
 
     @Override

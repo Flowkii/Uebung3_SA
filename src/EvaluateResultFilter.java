@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class EvaluateResultFilter implements ResultListener{
+public class EvaluateResultFilter implements ResultListener {
     private Result result;
     private List<Coordinate> _expectedCoordinates;
     private int tolerance;
@@ -17,6 +17,7 @@ public class EvaluateResultFilter implements ResultListener{
         tolerance = 3;
         listeners = new Vector();
     }
+
     @Override
     public void resultChanged(ResultEvent event) {
         result = event.getResult();

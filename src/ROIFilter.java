@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.Vector;
 
 public class ROIFilter implements Serializable, ImageAppearanceListener {
-    private PlanarImage image;
+    private PlanarImage inputImage;
+    private PlanarImage outputImage;
     private int width = 200;
     private int height = 100;
     private int xOffset = 0;
@@ -29,6 +30,7 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
 
     public void setWidth(int width) {
         this.width = width;
+        process();
     }
 
     public int getHeight() {
@@ -37,6 +39,8 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
 
     public void setHeight(int height) {
         this.height = height;
+        process();
+
     }
 
     public int getxOffset() {
@@ -45,6 +49,8 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
 
     public void setxOffset(int xOffset) {
         this.xOffset = xOffset;
+        process();
+
     }
 
     public int getyOffset() {
@@ -53,33 +59,40 @@ public class ROIFilter implements Serializable, ImageAppearanceListener {
 
     public void setyOffset(int yOffset) {
         this.yOffset = yOffset;
+        process();
     }
-    public void getRectangle(){
-        rectangle= new Rectangle(xOffset, yOffset, width, height);
+
+    public void getRectangle() {
+        rectangle = new Rectangle(xOffset, yOffset, width, height);
     }
 
     @Override
     public void imageAppearanceChanged(ImageAppearanceEvent event) {
+        inputImage = event.getImage();
+        process();
+    }
 
-        image = PlanarImage.wrapRenderedImage(event.getImage().getAsBufferedImage(rectangle, event.getImage().getColorModel()));
-
-        getRectangle();
-        Double xDouble = rectangle.getX();
-        Integer x = xDouble.intValue();
-        Double yDouble = rectangle.getX();
-        Integer y = yDouble.intValue();
-        image.setProperty("offsetX", x);
-        image.setProperty("offsetY", y);
-
-        Vector var1;
-        var1 = (Vector) this.listeners.clone();
-
-        ImageAppearanceEvent var2 = new ImageAppearanceEvent(event.getSource(),image);
-
-        for (int var3 = 0; var3 < var1.size(); ++var3) {
-            ImageAppearanceListener var4 = (ImageAppearanceListener) var1.elementAt(var3);
-            var4.imageAppearanceChanged(var2);
+    private void fireImageAppearanceEvent() {
+        Vector vector;
+        vector = (Vector) listeners.clone();
+        ImageAppearanceEvent event = new ImageAppearanceEvent(this, outputImage);
+        for (int i = 0; i < vector.size(); i++) {
+            ImageAppearanceListener listener = (ImageAppearanceListener) vector.elementAt(i);
+            listener.imageAppearanceChanged(event);
         }
+    }
 
+    private void process() {
+        if (inputImage != null) {
+            outputImage = PlanarImage.wrapRenderedImage(inputImage.getAsBufferedImage(rectangle, inputImage.getColorModel()));
+            getRectangle();
+            Double xDouble = rectangle.getX();
+            Integer x = xDouble.intValue();
+            Double yDouble = rectangle.getX();
+            Integer y = yDouble.intValue();
+            outputImage.setProperty("offsetX", x);
+            outputImage.setProperty("offsetY", y);
+            fireImageAppearanceEvent();
+        }
     }
 }

@@ -1,8 +1,9 @@
 import javax.media.jai.PlanarImage;
 import java.util.EventObject;
 
-public class ImageAppearanceEvent extends EventObject{
+public class ImageAppearanceEvent extends EventObject {
     private PlanarImage image;
+
     /**
      * Constructs a prototypical Event.
      *
@@ -17,6 +18,7 @@ public class ImageAppearanceEvent extends EventObject{
     public PlanarImage getImage() {
         return image;
     }
+
     public void setImage(PlanarImage image) {
         this.image = image;
     }

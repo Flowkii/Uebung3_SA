@@ -1,10 +1,8 @@
-import java.beans.EventSetDescriptor;
-import java.beans.MethodDescriptor;
-import java.beans.ParameterDescriptor;
-import java.beans.PropertyDescriptor;
+import java.beans.*;
 import java.lang.reflect.Method;
 
-public class OpeningFilterBeanInfo extends OpeningFilter{
+public class OpeningFilterBeanInfo extends SimpleBeanInfo {
+    @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
         try {
             Class roiFilterClass = OpeningFilter.class;
@@ -22,6 +20,7 @@ public class OpeningFilterBeanInfo extends OpeningFilter{
         }
     }
 
+    @Override
     public MethodDescriptor[] getMethodDescriptors() {
         try {
             Class clazz = OpeningFilter.class;
@@ -36,6 +35,20 @@ public class OpeningFilterBeanInfo extends OpeningFilter{
             var8.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public PropertyDescriptor[] getPropertyDescriptors() {
+        try {
+
+            Class clazz = OpeningFilter.class;
+            PropertyDescriptor cycles = new PropertyDescriptor("cycles", clazz);
+            PropertyDescriptor propertyDescriptor[] = {cycles};
+            return propertyDescriptor;
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

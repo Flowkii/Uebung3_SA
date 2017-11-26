@@ -1,10 +1,10 @@
 import java.beans.*;
 import java.lang.reflect.Method;
 
-public class CalcCentroidsFilterBeanInfo extends SimpleBeanInfo{
+public class CalcCentroidsFilterBeanInfo extends SimpleBeanInfo {
     @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
-        return new PropertyDescriptor[]{ };
+        return new PropertyDescriptor[]{};
     }
 
     @Override

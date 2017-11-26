@@ -3,15 +3,15 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class CalcDiametersFilter implements ResultListener{
+public class CalcDiametersFilter implements ResultListener {
     private Result result;
     private Vector listeners;
 
     public CalcDiametersFilter() {
         listeners = new Vector();
     }
-    
-    
+
+
     @Override
     public void resultChanged(ResultEvent event) {
         this.result = event.getResult();
@@ -25,7 +25,7 @@ public class CalcDiametersFilter implements ResultListener{
     public void removeResultListener(ResultListener listener) {
         listeners.removeElement(listener);
     }
-    
+
     private void process() {
         ArrayList<Coordinate> coordinates = result.getCalculatedCoordinates();
         PlanarImage image = result.getImage();
@@ -33,7 +33,7 @@ public class CalcDiametersFilter implements ResultListener{
         if (coordinates != null && !coordinates.isEmpty() && image != null) {
             BufferedImage bi = image.getAsBufferedImage();
 
-            for (Coordinate coordinate: coordinates) {
+            for (Coordinate coordinate : coordinates) {
                 int x = coordinate._x - (Integer) image.getProperty("offsetX");
                 int y = coordinate._y - (Integer) image.getProperty("offsetY");
                 int p = bi.getRaster().getSample(x + 1, y, 0);

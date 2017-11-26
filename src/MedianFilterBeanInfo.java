@@ -35,6 +35,7 @@ public class MedianFilterBeanInfo extends SimpleBeanInfo {
             return null;
         }
     }
+
     public PropertyDescriptor[] getPropertyDescriptors() {
         try {
             PropertyDescriptor propertyDescriptor = new PropertyDescriptor("medianValue", MedianFilter.class);

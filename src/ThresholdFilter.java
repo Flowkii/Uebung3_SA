@@ -10,7 +10,8 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
     private double thresholdHigh;
     private double thresholdConst;
     private int band;
-    private PlanarImage image;
+    private PlanarImage inputImage;
+    private PlanarImage outputImage;
     private Vector listeners;
 
     public ThresholdFilter() {
@@ -23,38 +24,40 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
 
     @Override
     public void imageAppearanceChanged(ImageAppearanceEvent event) {
-        this.image = event.getImage();
-        run();
+        this.inputImage = event.getImage();
+        process();
     }
 
     private void fireImageAppearanceEvent() {
         Vector vector;
         vector = (Vector) listeners.clone();
-        ImageAppearanceEvent event = new ImageAppearanceEvent(this, image);
+        ImageAppearanceEvent event = new ImageAppearanceEvent(this, outputImage);
         for (int i = 0; i < vector.size(); i++) {
             ImageAppearanceListener listener = (ImageAppearanceListener) vector.elementAt(i);
             listener.imageAppearanceChanged(event);
         }
     }
 
-    private void run() {
-        double[] lowVal = new double[band];
-        double[] highVal = new double[band];
-        double[] constant = new double[band];
+    private void process() {
+        if (inputImage != null) {
+            double[] lowVal = new double[band];
+            double[] highVal = new double[band];
+            double[] constant = new double[band];
 
-        for (int i = 0; i < band; i++) {
-            lowVal[i] = thresholdLow;
-            highVal[i] = thresholdHigh;
-            constant[i] = thresholdConst;
+            for (int i = 0; i < band; i++) {
+                lowVal[i] = thresholdLow;
+                highVal[i] = thresholdHigh;
+                constant[i] = thresholdConst;
+            }
+            ParameterBlock parameterBlock = new ParameterBlock();
+            parameterBlock.addSource(inputImage);
+            parameterBlock.add(lowVal);
+            parameterBlock.add(highVal);
+            parameterBlock.add(constant);
+            RenderedImage dest = JAI.create("threshold", parameterBlock);
+            outputImage = PlanarImage.wrapRenderedImage(dest);
+            fireImageAppearanceEvent();
         }
-        ParameterBlock parameterBlock = new ParameterBlock();
-        parameterBlock.addSource(image);
-        parameterBlock.add(lowVal);
-        parameterBlock.add(highVal);
-        parameterBlock.add(constant);
-        RenderedImage dest = JAI.create("threshold", parameterBlock);
-        image = PlanarImage.wrapRenderedImage(dest);
-        fireImageAppearanceEvent();
     }
 
     public double getThresholdLow() {
@@ -63,6 +66,7 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
 
     public void setThresholdLow(double thresholdLow) {
         this.thresholdLow = thresholdLow;
+        process();
     }
 
     public double getThresholdHigh() {
@@ -71,6 +75,7 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
 
     public void setThresholdHigh(double thresholdHigh) {
         this.thresholdHigh = thresholdHigh;
+        process();
     }
 
 
@@ -80,6 +85,7 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
 
     public void setThresholdConst(double thresholdConst) {
         this.thresholdConst = thresholdConst;
+        process();
     }
 
     public int getBand() {
@@ -88,6 +94,7 @@ public class ThresholdFilter implements ImageAppearanceListener, Serializable {
 
     public void setBand(int band) {
         this.band = band;
+        process();
     }
 
     public void addImageAppearanceListener(ImageAppearanceListener listener) {

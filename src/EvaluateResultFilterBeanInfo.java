@@ -1,7 +1,7 @@
 import java.beans.*;
 import java.lang.reflect.Method;
 
-public class EvaluateResultFilterBeanInfo extends SimpleBeanInfo{
+public class EvaluateResultFilterBeanInfo extends SimpleBeanInfo {
     public EventSetDescriptor[] getEventSetDescriptors() {
         try {
             Class clazz = EvaluateResultFilter.class;
