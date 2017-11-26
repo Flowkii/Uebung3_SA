@@ -27,3 +27,6 @@ Java-Bean: True
 Name: EvaluateResultFilter.class
 Java-Bean: True
 
+Name: ResultDisplayer
+Java-Bean: True
+

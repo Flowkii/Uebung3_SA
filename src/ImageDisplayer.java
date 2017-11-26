@@ -18,7 +18,6 @@ public class ImageDisplayer extends Canvas implements ImageAppearanceListener {
     @Override
     public void paint(Graphics graphics) {
         if (image != null) {
-            graphics.setColor(Color.yellow);
             int height = image.getHeight();
             int width = image.getWidth();
             setSize(width, height);

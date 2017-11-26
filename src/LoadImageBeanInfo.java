@@ -1,7 +1,5 @@
-import java.beans.EventSetDescriptor;
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-import java.beans.SimpleBeanInfo;
+import java.beans.*;
+import java.lang.reflect.Method;
 
 public class LoadImageBeanInfo extends SimpleBeanInfo {
 
