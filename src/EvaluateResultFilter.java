@@ -22,12 +22,13 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
     @Override
     public void resultChanged(ResultEvent event) {
         result = event.getResult();
-        try {
-            readExpectedCoordinates(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        process();
+            try {
+                readExpectedCoordinates(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            process();
+
     }
 
     private void process() {
@@ -59,18 +60,20 @@ public class EvaluateResultFilter implements ResultListener, Serializable {
 
     private void readExpectedCoordinates(String expectedResultPath) throws IOException {
         FileReader fileReader = new FileReader(expectedResultPath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        if(fileReader!=null) {
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        _expectedCoordinates = new ArrayList<>();
-        String line = bufferedReader.readLine();
+            _expectedCoordinates = new ArrayList<>();
+            String line = bufferedReader.readLine();
 
-        String[] splittedLine = line.split("\\[");
-        String[] coordinates = splittedLine[1].split(", ");
-        for (int i = 0; i < coordinates.length; i++) {
-            String x_y_Coordinates = coordinates[i].replaceAll("[^\\d,]", "");
-            String[] x_y_Coordinates_splitted = x_y_Coordinates.split(",");
-            Coordinate coordinate = new Coordinate(Integer.parseInt(x_y_Coordinates_splitted[0]), Integer.parseInt(x_y_Coordinates_splitted[1]));
-            _expectedCoordinates.add(coordinate);
+            String[] splittedLine = line.split("\\[");
+            String[] coordinates = splittedLine[1].split(", ");
+            for (int i = 0; i < coordinates.length; i++) {
+                String x_y_Coordinates = coordinates[i].replaceAll("[^\\d,]", "");
+                String[] x_y_Coordinates_splitted = x_y_Coordinates.split(",");
+                Coordinate coordinate = new Coordinate(Integer.parseInt(x_y_Coordinates_splitted[0]), Integer.parseInt(x_y_Coordinates_splitted[1]));
+                _expectedCoordinates.add(coordinate);
+            }
         }
 
     }
