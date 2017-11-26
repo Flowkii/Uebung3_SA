@@ -40,25 +40,29 @@ public class ResultDisplayer extends TextArea implements ResultListener {
         if (result != null) {
             sb.append(result.get_amount());
             sb.append(" joints were found.");
-            sb.append("Erwartet X \t Gefunden X \t ABWEICHUNG \t Erwartet Y \t Gefunden Y \t ABWEICHUNG \t X und Y in Toleranzberich \t Durchmesser");
+            sb.append("\n");
+            sb.append("expected X \t found X \t ABERRATION \t expected Y \t found Y \t ABERRATION \t X and Y in tolerance range \t diameter");
+            sb.append("\n");
             for (int i = 0; i < result.get_amount(); i++) {
                 sb.append(result.getExpectedCoordinates().get(i)._x);
-                sb.append("\t\t\t\t");
+                sb.append("\t\t");
                 sb.append(result.getCalculatedCoordinates().get(i)._x);
-                sb.append("\t\t\t\t");
+                sb.append("\t\t");
                 sb.append(result.getAberrationX().get(i));
-                sb.append("\t\t\t\t");
+                sb.append("\t\t");
                 sb.append(result.getExpectedCoordinates().get(i)._y);
-                sb.append("\t\t\t\t");
+                sb.append("\t\t");
                 sb.append(result.getCalculatedCoordinates().get(i)._y);
-                sb.append("\t\t\t\t");
-                sb.append(result.getAberrationY());
-                sb.append("\t\t\t\t");
+                sb.append("\t\t");
+                sb.append(result.getAberrationY().get(i));
+                sb.append("\t\t");
                 sb.append(result.getIsInToleranceRange().get(i));
-                sb.append("\t\t\t\t\t\t");
+                sb.append("\t\t\t");
                 sb.append(result.getDiameters().get(i));
+                sb.append("\n");
             }
         }
+        this.setText(sb.toString());
         this.setEditable(false);
     }
 }
